@@ -11,7 +11,7 @@ parameters:
   type: string
 
 variables:
-  - group: 'sophia-training-center'
+  - group: 'training-center'
   - name: vmImageName
     value: 'ubuntu-latest'
 
