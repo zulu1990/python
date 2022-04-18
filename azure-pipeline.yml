@@ -39,12 +39,12 @@ jobs:
 
             $BOX_CLIENT_ID = "$(non-prod-box-client-id)"
             $BOX_CLIENT_SECRET = "$(non-prod-box-client-secret)"
-            $BOX_DEVELOPER_TOKEN = "${{ parameters.developer_token }}" \
-            #BOX_FOLDER_ID = "$(non-prod-box-folder-id)" \
-            AZURE_APPLICATION_INSIGHTS_KEY="$(non-prod-app-ins-key)" \
-            AZURE_APPLICATION_INSIGHTS_ID="$(non-prod-app-ins-id)" \
-            AZURE_APPLICATION_INSIGHTS_BASE_URL="$(non-prod-app-ins-url)" \
-            LOCAL_FILE_PATH="data/" \
+            $BOX_DEVELOPER_TOKEN = "${{ parameters.developer_token }}" 
+            $BOX_FOLDER_ID = "$(non-prod-box-folder-id)" 
+            AZURE_APPLICATION_INSIGHTS_KEY="$(non-prod-app-ins-key)" 
+            AZURE_APPLICATION_INSIGHTS_ID="$(non-prod-app-ins-id)" 
+            AZURE_APPLICATION_INSIGHTS_BASE_URL="$(non-prod-app-ins-url)" 
+            LOCAL_FILE_PATH="data/" 
             TEMPLATE_FILE_PATH="data/templates/"
             
             python app.py --execute=ANALYTIC            
