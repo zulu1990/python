@@ -1,4 +1,5 @@
 import logging
+import os
 from datetime import date
 
 from boxsdk import OAuth2, Client
@@ -29,7 +30,9 @@ class BoxService:
     def download_report(self, sub_path: str):
         box_files = self.client.folder(BoxAuthConfig.FOLDER_ID).get_items()
         last_item = [file for file in box_files][-1]
-
+        cur_path = os.path.abspath(os.getcwd())
+        print(f'cur path {cur_path}')
+        self.logger.info(f'cur path {cur_path}')
         output = open(PathsConfig.LOCAL_FILE_PATH + sub_path + last_item.name, 'wb')
         self.client.file(last_item.id).download_to(output)
         self.logger.info('file downloaded')
