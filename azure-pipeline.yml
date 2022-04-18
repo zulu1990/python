@@ -37,7 +37,7 @@ jobs:
             # Write your PowerShell commands here.
             cd src
 
-            $BOX_CLIENT_ID = $(non-prod-box-client-id)
+            $env:BOX_CLIENT_ID = "$(non-prod-box-client-id)"
             $BOX_CLIENT_SECRET = $(non-prod-box-client-secret)
             $BOX_DEVELOPER_TOKEN = ${{ parameters.developer_token }}
             $BOX_FOLDER_ID = $(non-prod-box-folder-id)
