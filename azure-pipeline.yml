@@ -11,10 +11,10 @@ parameters:
   default: 'ANALYTIC'
   type: string
   values:
-    - 'ANALYTIC'
-    - 'NOTIFICATION'
-    - 'SOMETHING ELSE'
-    
+  - 'ANALYTIC'
+  - 'NOTIFICATION'
+  - 'SOMETHING ELSE'  
+  
 - name: developer_token
   displayName: developer token from box app
   type: string
