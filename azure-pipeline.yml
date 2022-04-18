@@ -8,8 +8,6 @@ pr:
 parameters:
 - name: execute_path
   displayName: chose part to execute
-  default: 'ANALYTIC'
-  type: string
   values:
   - 'ANALYTIC'
   - 'NOTIFICATION'
