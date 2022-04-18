@@ -13,6 +13,7 @@ parameters:
   values:
     - 'ANALYTIC'
     - 'NOTIFICATION'
+    - 'SOMETHING ELSE'
     
 - name: developer_token
   displayName: developer token from box app
