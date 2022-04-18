@@ -31,7 +31,7 @@ class BoxService:
         box_files = self.client.folder(BoxAuthConfig.FOLDER_ID).get_items()
         last_item = [file for file in box_files][-1]
 
-        output = open(PathsConfig.LOCAL_FILE_PATH, sub_path + last_item.name, 'wb')
+        output = open(PathsConfig.LOCAL_FILE_PATH + sub_path + last_item.name, 'wb')
         self.client.file(last_item.id).download_to(output)
         self.logger.info('file downloaded')
         return last_item.id
