@@ -26,7 +26,7 @@ jobs:
           targetType: 'inline'
           script: |
             # Write your PowerShell commands here.
-            
+            python -m venv venv
             Write-Host "Hello World"
             pip3 install -r requirements.txt
         displayName: Install Dependencies
@@ -36,7 +36,7 @@ jobs:
           script: |
             # Write your PowerShell commands here.
             cd src
-
+            python -m venv venv
             $env:BOX_CLIENT_ID = "$(non-prod-box-client-id)"
             $env:BOX_CLIENT_SECRET = "$(non-prod-box-client-secret)"
             $env:BOX_DEVELOPER_TOKEN = "${{ parameters.developer_token }}"
