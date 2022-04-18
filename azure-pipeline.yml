@@ -44,8 +44,8 @@ jobs:
             $env:AZURE_APPLICATION_INSIGHTS_KEY = "$(non-prod-app-ins-key)"
             $env:AZURE_APPLICATION_INSIGHTS_ID = "$(non-prod-app-ins-id)"
             $env:AZURE_APPLICATION_INSIGHTS_BASE_URL = "$(non-prod-app-ins-url)"
-            $env:LOCAL_FILE_PATH = "/data/" 
-            $env:TEMPLATE_FILE_PATH= "/data/templates/"
+            $env:LOCAL_FILE_PATH = "./data/" 
+            $env:TEMPLATE_FILE_PATH= "./data/templates/"
             
             python app.py --execute=ANALYTIC            
         displayName: 'Proccess Analytics'  
