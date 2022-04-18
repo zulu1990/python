@@ -1,0 +1,52 @@
+trigger:
+- none
+
+pr:
+- none
+
+# developer_token is temproraly 
+parameters:
+- name: developer_token
+  displayName: developer token from box app
+  type: string
+
+variables:
+  - group: 'sophia-training-center'
+  - name: vmImageName
+    value: 'windows-latest'
+
+jobs:
+  - job:
+    displayName: Sync Analytics
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+      - bash: |
+          set -e
+
+          python3 -m venv env
+          source env/bin/activate
+
+          pip3 install -r requirements.txt
+        displayName: Install Dependencies
+      - bash: |
+          set -e
+          source env/bin/activate
+          echo developer token ${{ parameters.developer_token }}
+          
+          (cd src
+
+            PYTHONPATH="$PWD/.." \
+            BOX_CLIENT_ID="$(non-prod-box-client-id)" \
+            BOX_CLIENT_SECRET="$(non-prod-box-client-secret)" \
+            BOX_DEVELOPER_TOKEN="${{ parameters.developer_token }}" \
+            BOX_FOLDER_ID="$(non-prod-box-folder-id)" \
+            AZURE_APPLICATION_INSIGHTS_KEY="$(non-prod-app-ins-key)" \
+            AZURE_APPLICATION_INSIGHTS_ID="$(non-prod-app-ins-id)" \
+            AZURE_APPLICATION_INSIGHTS_BASE_URL="$(non-prod-app-ins-url)" \
+            LOCAL_FILE_PATH="data/" \
+            TEMPLATE_FILE_PATH="data/templates/"
+          
+            python app.py --execute=ANALYTIC
+          )
+        displayName: 'Proccess Analytics'  
