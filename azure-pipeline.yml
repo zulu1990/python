@@ -35,8 +35,9 @@ jobs:
           targetType: 'inline'
           script: |
             # Write your PowerShell commands here.
-            cd src
             python -m venv venv
+            cd src
+            
             $env:BOX_CLIENT_ID = "$(non-prod-box-client-id)"
             $env:BOX_CLIENT_SECRET = "$(non-prod-box-client-secret)"
             $env:BOX_DEVELOPER_TOKEN = "${{ parameters.developer_token }}"
