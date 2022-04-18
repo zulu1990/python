@@ -30,7 +30,7 @@ class BoxService:
     def download_report(self, sub_path: str):
         box_files = self.client.folder(BoxAuthConfig.FOLDER_ID).get_items()
         last_item = [file for file in box_files][-1]
-        cur_path = os.path.abspath(os.getcwd())
+        cur_path = os.getcwd()
         print(f'cur path {cur_path}')
         self.logger.info(f'cur path {cur_path}')
         path = os.path.join(cur_path, PathsConfig.LOCAL_FILE_PATH, sub_path + last_item.name)
