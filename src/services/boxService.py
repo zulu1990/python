@@ -31,8 +31,16 @@ class BoxService:
         box_files = self.client.folder(BoxAuthConfig.FOLDER_ID).get_items()
         last_item = [file for file in box_files][-1]
         cur_path = os.getcwd()
-        print(f'cur path {cur_path}')
+        cur_dir = os.curdir
+        ROOT_DIR = os.path.abspath(os.curdir)
+
+        test_path = os.path.join(cur_dir, PathsConfig.LOCAL_FILE_PATH, sub_path, last_item.name)
+        print(f'test_path {test_path}')
+        self.logger.info(f'test_path {test_path}')
+
+        print(f'cur path {cur_path}, {ROOT_DIR}')
         self.logger.info(f'cur path {cur_path}')
+
         path = os.path.join(cur_path, PathsConfig.LOCAL_FILE_PATH, sub_path + last_item.name)
         print(f'file path {path}')
         self.logger.info(f'file path {path}')
