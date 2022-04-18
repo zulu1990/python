@@ -37,7 +37,6 @@ jobs:
             # Write your PowerShell commands here.
             cd src
 
-            PYTHONPATH="$PWD/.."
             BOX_CLIENT_ID="$(non-prod-box-client-id)"
             BOX_CLIENT_SECRET="$(non-prod-box-client-secret)"
             BOX_DEVELOPER_TOKEN="${{ parameters.developer_token }}" \
