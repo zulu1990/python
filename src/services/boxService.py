@@ -33,7 +33,10 @@ class BoxService:
         cur_path = os.path.abspath(os.getcwd())
         print(f'cur path {cur_path}')
         self.logger.info(f'cur path {cur_path}')
-        output = open(cur_path + PathsConfig.LOCAL_FILE_PATH + sub_path + last_item.name, 'wb')
+        path = os.path.join(cur_path, PathsConfig.LOCAL_FILE_PATH, sub_path + last_item.name)
+        print(f'file path {path}')
+        self.logger.info(f'file path {path}')
+        output = open(path, 'wb')
         self.client.file(last_item.id).download_to(output)
         self.logger.info('file downloaded')
         return last_item.id
