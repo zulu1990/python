@@ -21,24 +21,25 @@ jobs:
     pool:
       vmImage: $(vmImageName)
     steps:
-      - bash: |
-          set -e
-
-          python3 -m venv env
-          source env/bin/activate
-
-          pip3 install -r requirements.txt
+      - task: PowerShell@2
+        inputs:
+          targetType: 'inline'
+          script: |
+            # Write your PowerShell commands here.
+            
+            Write-Host "Hello World"
+            python install -r requirements.txt
         displayName: Install Dependencies
-      - bash: |
-          set -e
-          source env/bin/activate
-          echo developer token ${{ parameters.developer_token }}
-          
-          (cd src
+      - task: PowerShell@2
+        inputs:
+          targetType: 'inline'
+          script: |
+            # Write your PowerShell commands here.
+            cd src
 
-            PYTHONPATH="$PWD/.." \
-            BOX_CLIENT_ID="$(non-prod-box-client-id)" \
-            BOX_CLIENT_SECRET="$(non-prod-box-client-secret)" \
+            PYTHONPATH="$PWD/.."
+            BOX_CLIENT_ID="$(non-prod-box-client-id)"
+            BOX_CLIENT_SECRET="$(non-prod-box-client-secret)"
             BOX_DEVELOPER_TOKEN="${{ parameters.developer_token }}" \
             BOX_FOLDER_ID="$(non-prod-box-folder-id)" \
             AZURE_APPLICATION_INSIGHTS_KEY="$(non-prod-app-ins-key)" \
@@ -46,7 +47,6 @@ jobs:
             AZURE_APPLICATION_INSIGHTS_BASE_URL="$(non-prod-app-ins-url)" \
             LOCAL_FILE_PATH="data/" \
             TEMPLATE_FILE_PATH="data/templates/"
-          
-            python app.py --execute=ANALYTIC
-          )
+            
+            python app.py --execute=ANALYTIC            
         displayName: 'Proccess Analytics'  
