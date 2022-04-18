@@ -28,7 +28,7 @@ jobs:
             # Write your PowerShell commands here.
             
             Write-Host "Hello World"
-            python install -r requirements.txt
+            pip3 install -r requirements.txt
         displayName: Install Dependencies
       - task: PowerShell@2
         inputs:
