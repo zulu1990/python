@@ -92,7 +92,7 @@ class ExcelService:
     def prepare_notifications_file(self, file_list: list, params: Parameters):
         try:
             feedback_df = pd.DataFrame()
-            feedback_model_list = []
+            feedback_model_list = [FeedbackModel]
             for file in file_list:
                 model = FeedbackModel(file.Id, file.Name)
                 data = pd.read_excel(PathsConfig.LOCAL_FILE_PATH + params.ReportSubPath + file.Name, sheet_name=params.WorkSheet)
