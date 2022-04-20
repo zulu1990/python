@@ -23,8 +23,8 @@ def process_notification(params: Parameters):
         json_data = json.dumps(feedback_files)
         test_value = 'defined inside python'
         print("json data ", json_data)
-        print('##vso[task.setvariable variable=json_data;]%s' % json_data)
-        print('##vso[task.setvariable variable=test_value;]%s' % test_value)
+        print('##vso[task.setvariable variable=json_data]' %json_data)
+        print('##vso[task.setvariable variable=test_value]' % test_value)
     except BaseException as bs:
         print(bs)
 
