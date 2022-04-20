@@ -39,7 +39,6 @@ jobs:
           targetType: 'inline'
           script: |
             # Write your PowerShell commands here.
-            Write-Host $messageToSend
             $message = "message from prepare notification job"
             Write-Host "##vso[task.setvariable variable=messageToSend;isOutput=true] $message"
             Write-Host "##vso[task.setvariable variable=json_data;isOutput=true] $(json_data)"
@@ -70,6 +69,8 @@ jobs:
     pool:
       vmImage: $(vmImageName)
     dependsOn: send_notification
+    variables:
+      feedback: $[dependencies.prepare_notification.outputs['outputVars.json_data']]
     steps:
       - task: PowerShell@2
         inputs:
@@ -82,5 +83,5 @@ jobs:
       - template: python-template.yml
         parameters:
           execute_path: CUSTOM
-          feedback_files: $(json_data)
+          feedback_files: $(feedback)
           developer_token: ${{ parameters.developer_token }}
