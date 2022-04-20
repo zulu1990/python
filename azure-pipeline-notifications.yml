@@ -13,6 +13,8 @@ variables:
   - group: 'training-center'
   - name: vmImageName
     value: 'windows-latest'
+  - name: version
+    value: empty
 
 
 jobs:
