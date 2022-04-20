@@ -24,7 +24,6 @@ class BoxService:
 
     def __init__(self):
         self.client = init_box_client(BoxAuthConfig)
-        print(f'creds: {BoxAuthConfig.CLIENT_ID}, {BoxAuthConfig.CLIENT_SECRET}, {BoxAuthConfig.DEVELOPER_TOKEN}')
         self.logger.info(f'creds: {BoxAuthConfig.CLIENT_ID}, {BoxAuthConfig.CLIENT_SECRET}, {BoxAuthConfig.DEVELOPER_TOKEN}')
 
     def download_report(self, sub_path: str):

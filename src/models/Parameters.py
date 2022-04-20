@@ -15,6 +15,7 @@ class Parameters:
         self.NotificationSubPath = ''
         self.NotificationList = ''
         self.Execute = None
+        self.feedback_files = []
 
     def set_parameters(self, args: any):
         self.Execute = Execute[f'{args.execute}']
@@ -29,6 +30,7 @@ class Parameters:
         self.Formula = args.formula
         self.FormulaRange = args.formula_range
         self.NotificationList = self.NotificationSubPath + self.NotificationTemplate
+        self.feedback_files = args.feedback_files
 
 
 class Execute(Enum):
