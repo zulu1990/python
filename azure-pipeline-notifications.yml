@@ -9,7 +9,7 @@ parameters:
   displayName: chose part to execute
   values:
   - 'ANALYTIC'
-  - 'NOTIFICATION_PREPARE'
+  - 'NOTIFICATION'
 
 - name: developer_token
   displayName: developer token from box app
@@ -57,7 +57,7 @@ jobs:
         displayName: 'Proccess Analytics'
       - task: CopyFiles@2
         inputs:
-          SourceFolder: '../data/notifications'
+          SourceFolder: 'data/notifications'
           Contents: '**'
           TargetFolder: '$(Pipeline.Workspace)'
           
