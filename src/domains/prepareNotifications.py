@@ -32,8 +32,8 @@ def process_finish(params: Parameters):
     excel_service = ExcelService()
     logger.info('asdasd', params.feedback_files)
     print('asdasd', params.feedback_files)
-    # feedback_delivered = send_notification()
-    feedback_files = json.loads(params.feedback_files)
+    # feedback_files = json.loads(params.feedback_files)
+    feedback_files = params.feedback_files
     feedback_delivered = feedback_files 
     excel_service.complete_send_feedback(feedback_delivered, params)
     box_service.update_contents_to_box(feedback_files, params.ReportSubPath)

@@ -28,6 +28,7 @@ steps:
             # Write your PowerShell commands here.
             Write-Host ${{ parameters.execute_path }}
             Write-Host ${{ parameters.feedback_files }}
+            $feedback = "${{ parameters.feedback_files }}"
             python -m venv venv
             cd src
             
@@ -41,6 +42,6 @@ steps:
             $env:LOCAL_FILE_PATH = "../data/" 
             $env:TEMPLATE_FILE_PATH= "../data/templates/"
             
-            python app.py --execute=${{ parameters.execute_path }} --feedback_files="${{ parameters.feedback_files }}"
+            python app.py --execute=${{ parameters.execute_path }} --feedback_files=$feedback
 
         displayName: 'Proccess Analytics'  
