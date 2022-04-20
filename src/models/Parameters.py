@@ -15,7 +15,7 @@ class Parameters:
         self.NotificationSubPath = ''
         self.NotificationList = ''
         self.Execute = None
-        self.feedback_files = ''
+        self.feedback_files = []
 
     def set_parameters(self, args: any):
         self.Execute = Execute[f'{args.execute}']
