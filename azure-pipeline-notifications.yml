@@ -55,10 +55,6 @@ jobs:
             
             python app.py --execute=${{ parameters.execute_path }}
         displayName: 'Proccess Analytics'
-
-      - publish: '$(Build.ArtifactStagingDirectory)'
-        displayName: 'publish notification_list'
-        artifact: drop
   - job:
     displayName: Notification File
     dependsOn: prepare_notification
@@ -77,3 +73,7 @@ jobs:
             # Write your PowerShell commands here.
             
             Write-Host '$(Build.ArtifactStagingDirectory)'
+            
+      - publish: '$(Build.ArtifactStagingDirectory)'
+        displayName: 'publish notification_list'
+        artifact: drop
