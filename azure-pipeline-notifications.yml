@@ -27,7 +27,7 @@ jobs:
     pool:
       vmImage: $(vmImageName)
     steps:
-      - template: azure-pipeline.yml
+      - template: python-template.yml
         parameters:
           execute_path: ${{ parameters.execute_path }}
           developer_token: ${{ parameters.developer_token }}
