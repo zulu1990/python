@@ -58,7 +58,7 @@ jobs:
       - task: CopyFiles@2
         inputs:
           SourceFolder: 'data/notifications'
-          Contents: '**'
+          Contents: '**.xlsx'
           TargetFolder: '$(Build.ArtifactStagingDirectory)'
       - task: PowerShell@2
         inputs:
