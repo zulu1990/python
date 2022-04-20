@@ -13,7 +13,7 @@ variables:
   - group: 'training-center'
   - name: vmImageName
     value: 'windows-latest'
-  - name: version
+  - name: json_data
     value: empty
 
 
