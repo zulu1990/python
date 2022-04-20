@@ -28,7 +28,7 @@ def process_notification(params: Parameters):
 def process_finish(params: Parameters):
     box_service = BoxService()
     excel_service = ExcelService()
-
+    print('asdasd', params.feedback_files)
     # feedback_delivered = send_notification()
     feedback_files = json.loads(params.feedback_files)
     feedback_delivered = feedback_files 
