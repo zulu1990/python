@@ -27,6 +27,7 @@ jobs:
         parameters:
           execute_path: NOTIFICATION
           developer_token: ${{ parameters.developer_token }}
+          feedback_files: ' '
       - task: CopyFiles@2
         inputs:
           SourceFolder: 'data/notifications'
