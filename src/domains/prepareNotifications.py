@@ -18,9 +18,9 @@ def process_notification(params: Parameters):
 
         box_files = box_service.download_reports(params.ReportSubPath)
         feedback_files = excel_service.prepare_notifications_file(box_files, params)
-        json_data = json.dumps([o.toJSON() for o in feedback_files])
+        json_data = json.dumps(feedback_files)
 
-        print('##vso[task.setvariable variable=object_data;]%s' % feedback_files)
+        x = json.loads(json_data)
         print('##vso[task.setvariable variable=json_data;]%s' % json_data)
 
     except BaseException as bs:
@@ -31,7 +31,7 @@ def process_finish(params: Parameters):
     excel_service = ExcelService()
 
     # feedback_delivered = send_notification()
-    feedback_files = params.feedback_files
+    feedback_files = json.loads(params.feedback_files)
     feedback_delivered = feedback_files
     excel_service.complete_send_feedback(feedback_delivered, params)
     box_service.update_contents_to_box(feedback_files, params.ReportSubPath)

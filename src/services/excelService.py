@@ -94,7 +94,12 @@ class ExcelService:
             feedback_df = pd.DataFrame()
             feedback_model_list = []
             for file in file_list:
-                model = FeedbackModel(file.Id, file.Name)
+                # model = FeedbackModel(file.Id, file.Name)
+                model = {
+                    'FieldId': file.Id,
+                    "FileName": file.Name,
+                    "QuestionIds": []
+                }
                 data = pd.read_excel(PathsConfig.LOCAL_FILE_PATH + params.ReportSubPath + file.Name, sheet_name=params.WorkSheet)
                 feedback = data.loc[data['status'] == params.FeedbackSendMark]
 
@@ -105,7 +110,7 @@ class ExcelService:
                         WORKSPACE_ID: [item.workspaceId],
                         MESSAGE_1: ['predefined message goes here']
                     })
-                    model.add_question_id(item.id)
+                    model['QuestionIds'].append(item.id)
                     feedback_df = pd.concat([feedback_df, feedback_data], axis=0)
 
                 feedback_model_list.append(model)

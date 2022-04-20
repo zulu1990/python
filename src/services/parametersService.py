@@ -16,8 +16,8 @@ def parse_parameters():
     parser.add_argument('--feedback_complete_mark', help='mark which indicates feedback was sent', type=str, default='completed_feedback_sent')
     parser.add_argument('--formula', help='excel formula to validate statuses', type=str, default='=fields!$A$2:$A$9')
     parser.add_argument('--formula_range', help='column range to apply --formula', type=str, default='A2:A1048576')
-    parser.add_argument('--execute', help='determines which part of application to run', type=str, default='ANALYTIC')
-    parser.add_argument('--feedback_files', help='sent feedback list', default=[])
+    parser.add_argument('--execute', help='determines which part of application to run', type=str, default='NOTIFICATION')
+    parser.add_argument('--feedback_files', help='sent feedback list', type=str, default='')
     
     params = Parameters()
     args = parser.parse_args()
