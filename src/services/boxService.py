@@ -76,6 +76,7 @@ class BoxService:
     def update_contents_to_box(self, files, sub_path: str):
         folder = PathsConfig.LOCAL_FILE_PATH + sub_path
         for item in files:
+            print("item", item)
             file_path = folder + item['FileName']
             self.update_content(file_path, item.FileId)
 

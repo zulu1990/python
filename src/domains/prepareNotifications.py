@@ -22,6 +22,7 @@ def process_notification(params: Parameters):
         feedback_files = excel_service.prepare_notifications_file(box_files, params)
         json_data = json.dumps(feedback_files)
         test_value = 'defined inside python'
+        print("json data ", json_data)
         print('##vso[task.setvariable variable=json_data;]%s' % json_data)
         print('##vso[task.setvariable variable=test_value;]%s' % test_value)
     except BaseException as bs:
@@ -30,13 +31,11 @@ def process_notification(params: Parameters):
 def process_finish(params: Parameters):
     box_service = BoxService()
     excel_service = ExcelService()
-    logger.info('asdasd', params.feedback_files)
     print('asdasd', params.feedback_files)
     # feedback_files = json.loads(params.feedback_files)
     feedback_files = params.feedback_files
     feedback_delivered = feedback_files 
     
-    logger.info('21312873618273', feedback_files)
     print('asdasd', feedback_delivered)
 
     excel_service.complete_send_feedback(feedback_delivered, params)
