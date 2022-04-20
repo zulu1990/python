@@ -5,11 +5,13 @@
 # Update excel status for the items
 # Send notifications??
 import json
+import logging
 from models.Parameters import Parameters
 from services.boxService import BoxService
 from services.excelService import ExcelService
 from services.fileService import clear_folder
 
+logger = logging.getLogger(__name__)
 
 def process_notification(params: Parameters):
     try:
@@ -28,6 +30,7 @@ def process_notification(params: Parameters):
 def process_finish(params: Parameters):
     box_service = BoxService()
     excel_service = ExcelService()
+    logger.info('asdasd', params.feedback_files)
     print('asdasd', params.feedback_files)
     # feedback_delivered = send_notification()
     feedback_files = json.loads(params.feedback_files)
