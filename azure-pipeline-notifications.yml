@@ -71,17 +71,20 @@ jobs:
     dependsOn: send_notification
     variables:
       feedback: $[dependencies.prepare_notification.outputs['outputVars.json_data']]
+      localVariable: $[dependencies.prepare_notification.outputs['outputVars.messageToSend']]
     steps:
       - task: PowerShell@2
         inputs:
           targetType: 'inline'
           script: |
             # Write your PowerShell commands here.
-            $messageHere = "$(messageToSend)"
+            $messageHere = "$(localVariable)"
+            $feedback = "$(feedback)"
+            Write-Host feedback pased $feedback
             Write-Host passed $messageHere
             Write-Host '$(Build.ArtifactStagingDirectory)'
       - template: python-template.yml
         parameters:
           execute_path: CUSTOM
-          feedback_files: $(feedback)
+          feedback_files: "$(feedback)"
           developer_token: ${{ parameters.developer_token }}
