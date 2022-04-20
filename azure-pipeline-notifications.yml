@@ -22,7 +22,7 @@ variables:
 
 
 jobs:
-  - job:
+  - job: prepare_notification
     displayName: Prepare Notification
     pool:
       vmImage: $(vmImageName)
@@ -55,6 +55,16 @@ jobs:
             
             python app.py --execute=${{ parameters.execute_path }}
         displayName: 'Proccess Analytics'
+
+      - publish: '$(Build.ArtifactStagingDirectory)'
+        displayName: 'publish notification_list'
+        artifact: drop
+  - job:
+    displayName: Notification File
+    dependsOn: prepare_notification
+    pool:
+      vmImage: $(vmImageName)
+    steps:
       - task: CopyFiles@2
         inputs:
           SourceFolder: 'data/notifications'
@@ -67,8 +77,3 @@ jobs:
             # Write your PowerShell commands here.
             
             Write-Host '$(Build.ArtifactStagingDirectory)'
-            
-      - publish: '$(Build.ArtifactStagingDirectory)'
-        displayName: 'publish notification_list'
-        artifact: drop
-
