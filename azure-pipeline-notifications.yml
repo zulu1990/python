@@ -43,10 +43,11 @@ jobs:
             $message = "message from prepare notification job"
             Write-Host "##vso[task.setvariable variable=messageToSend]$message"
             Write-Host '$(Build.ArtifactStagingDirectory)'
-        name: GetVal    
+        name: GetVal 
       - publish: '$(Build.ArtifactStagingDirectory)'
         displayName: 'publish notification_list'
-        artifact: drop
+        artifact: drop  
+
   - job: send_notification
     displayName: Send Notification
     pool:
