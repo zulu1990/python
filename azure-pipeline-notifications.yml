@@ -43,7 +43,7 @@ jobs:
             # Write your PowerShell commands here.
             Write-Host new test value $(new_test_value)
             Write-Host test value $(test_value)
-            Write-Host "##vso[task.setvariable variable=new_test_value] $(test_value)"
+            Write-Host "##vso[task.setvariable variable=new_test_value;isOutput=true;] $(test_value)"
             Write-Host '$(Build.ArtifactStagingDirectory)'
             
       - publish: '$(Build.ArtifactStagingDirectory)'
@@ -54,12 +54,16 @@ jobs:
     pool:
       vmImage: $(vmImageName)          
     dependsOn: prepare_notification
+    variables: 
+      someName: $[ dependencies.prepare_notification.outputs['setVariable.new_test_value'] ]
     steps:
       - task: PowerShell@2
         inputs:
           targetType: 'inline'
           script: |
+            
             # Write your PowerShell commands here.
+            Write-Host passed $(someName)
             Write-Host test value $(test_value)
             Write-Host '$(Build.ArtifactStagingDirectory)'
   - job:
@@ -67,14 +71,17 @@ jobs:
     pool:
       vmImage: $(vmImageName)
     dependsOn: send_notification
+    variables: 
+      someName: $[ dependencies.prepare_notification.outputs['setVariable.new_test_value'] ]
     steps:
       - task: PowerShell@2
         inputs:
           targetType: 'inline'
           script: |
+            $value_here = $(someName)
             # Write your PowerShell commands here.
-            Write-Host test value $(test_value)
-            Write-Host new test value $(new_test_value)
+            
+            Write-Host new test value $value_here
             Write-Host '$(Build.ArtifactStagingDirectory)'
       - template: python-template.yml
         parameters:
