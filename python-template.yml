@@ -7,6 +7,10 @@ parameters:
   displayName: developer token from box app
   type: string
 
+- name: feedback_files
+  displayName: succeeded feedback send
+  type: string
+  
 steps:
       - task: PowerShell@2
         inputs:
