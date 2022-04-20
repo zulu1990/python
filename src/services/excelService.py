@@ -124,11 +124,11 @@ class ExcelService:
         folder_path = PathsConfig.LOCAL_FILE_PATH + params.ReportSubPath
         try:
             for item in feedback_delivered:
-                file = folder_path + item.FileName
+                file = folder_path + item['FileName']
                 wb = load_workbook(file)
                 ws = wb[params.WorkSheet]
                 for index in range(1, ws.max_row + 1):
-                    if ws[f'B{index}'].value in item.QuestionIds:
+                    if ws[f'B{index}'].value in item['QuestionIds']:
                         ws[f'A{index}'].value = params.FeedbackCompleteMark
                 wb.save(file)
                 self.add_data_validations(file, params)

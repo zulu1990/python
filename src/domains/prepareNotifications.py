@@ -35,6 +35,10 @@ def process_finish(params: Parameters):
     # feedback_files = json.loads(params.feedback_files)
     feedback_files = params.feedback_files
     feedback_delivered = feedback_files 
+    
+    logger.info('21312873618273', feedback_files)
+    print('asdasd', feedback_delivered)
+
     excel_service.complete_send_feedback(feedback_delivered, params)
     box_service.update_contents_to_box(feedback_files, params.ReportSubPath)
 
