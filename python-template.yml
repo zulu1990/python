@@ -7,6 +7,9 @@ parameters:
   displayName: developer token from box app
   type: string
 
+variables:
+- name: version
+  value: empty
 
 steps:
       - task: PowerShell@2
@@ -40,5 +43,5 @@ steps:
             python app.py --execute=${{ parameters.execute_path }}
 
             print('##vso[task.setvariable variable=version;]%s' % (version))
-            
+
         displayName: 'Proccess Analytics'  
