@@ -16,7 +16,7 @@ def process_notification(params: Parameters):
 
     box_files = box_service.download_reports(params.ReportSubPath)
     feedback_files = excel_service.prepare_notifications_file(box_files, params)
-    print(feedback_files)
+    print('##vso[task.setvariable variable=version;]%s' % (feedback_files))
 
 def process_finish(params: Parameters):
     box_service = BoxService()
