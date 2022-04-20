@@ -12,13 +12,18 @@ from services.fileService import clear_folder
 
 
 def process_notification(params: Parameters):
-    box_service = BoxService()
-    excel_service = ExcelService()
+    try:
+        box_service = BoxService()
+        excel_service = ExcelService()
 
-    box_files = box_service.download_reports(params.ReportSubPath)
-    feedback_files = excel_service.prepare_notifications_file(box_files, params)
-    json_data = json.dumps(feedback_files)
-    print('##vso[task.setvariable variable=version;]%s' % (json_data))
+        box_files = box_service.download_reports(params.ReportSubPath)
+        feedback_files = excel_service.prepare_notifications_file(box_files, params)
+        json_data = json.dumps([o.toJSON() for o in feedback_files])
+
+        print('##vso[task.setvariable variable=version;]%s' % json_data)
+
+    except BaseException as bs:
+        print(bs)
 
 def process_finish(params: Parameters):
     box_service = BoxService()
