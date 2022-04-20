@@ -51,3 +51,10 @@ jobs:
     pool:
       vmImage: $(vmImageName)          
     dependsOn: prepare_notification
+    steps:
+      - task: PowerShell@2
+        inputs:
+          targetType: 'inline'
+          script: |
+            # Write your PowerShell commands here.
+            Write-Host object_data is $(json_data)
