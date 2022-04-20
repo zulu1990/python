@@ -10,7 +10,7 @@ class BoxAuthConfig:
     JWT_KEY_ID = os.getenv('BOX_JWT_KEY_ID')
     CERT_KEY_PATH = os.getenv('BOX_CERT_KEY_PATH')
     CERT_KEY_PASSPHRASE = os.environ.get('BOX_CERT_KEY_PASSPHRASE')
-    DEVELOPER_TOKEN = os.getenv("BOX_DEVELOPER_TOKEN", "2ZRDlyHhd3Iqpx3Np1jevodxEb9LxkeO")
+    DEVELOPER_TOKEN = os.getenv("BOX_DEVELOPER_TOKEN", "rfAOF6T3LXcr6yOZ7HAcJjXe8W1ZeI6V")
     FOLDER_ID = os.getenv("BOX_FOLDER_ID", "159813753976")
     #dont commit this
 class AppInsightsConfig:
