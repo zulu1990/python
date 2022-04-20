@@ -41,7 +41,7 @@ jobs:
             # Write your PowerShell commands here.
             Write-Host $messageToSend
             $message = "message from prepare notification job"
-            Write-Host "##vso[task.setvariable variable=messageToSend] $message"
+            Write-Host "##vso[task.setvariable variable=messageToSend]$message"
             Write-Host '$(Build.ArtifactStagingDirectory)'
             
       - publish: '$(Build.ArtifactStagingDirectory)'
