@@ -31,9 +31,8 @@ jobs:
         inputs:
           targetType: 'inline'
           script: |
-            # Write your PowerShell commands here.
             python -m venv venv
-            Write-Host "Hello World"
+            Write-Host azure-pipeline task1 called
             pip3 install -r requirements.txt
         displayName: Install Dependencies
       - task: PowerShell@2
