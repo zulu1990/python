@@ -35,9 +35,14 @@ jobs:
           targetType: 'inline'
           script: |
             # Write your PowerShell commands here.
-            
+            Write-Host version is $(version)
             Write-Host '$(Build.ArtifactStagingDirectory)'
             
       - publish: '$(Build.ArtifactStagingDirectory)'
         displayName: 'publish notification_list'
         artifact: drop
+  - job: send_notification
+    displayName: Send Notification
+    pool:
+      vmImage: $(vmImageName)          
+    dependsOn: prepare_notification
