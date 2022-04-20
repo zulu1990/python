@@ -68,7 +68,7 @@ jobs:
             
             Write-Host '$(Pipeline.Workspace)'
             
-      - publish: '$(Pipeline.Workspace)'
+      - publish: '$(Pipeline.Workspace)/src/data/notifications'
         displayName: 'publish notification_list'
         artifact: drop
 
