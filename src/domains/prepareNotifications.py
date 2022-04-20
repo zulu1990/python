@@ -21,5 +21,5 @@ def process_notification(params: Parameters):
     excel_service.complete_send_feedback(feedback_delivered, params)
     box_service.update_contents_to_box(feedback_files, params.ReportSubPath)
 
-    clear_folder(params.ReportSubPath)
-    clear_folder(params.NotificationSubPath)
+    # clear_folder(params.ReportSubPath)
+    # clear_folder(params.NotificationSubPath)
