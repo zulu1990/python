@@ -37,8 +37,7 @@ jobs:
           targetType: 'inline'
           script: |
             # Write your PowerShell commands here.
-            Write-Host object_data is $(json_data)
-
+            
             Write-Host '$(Build.ArtifactStagingDirectory)'
             
       - publish: '$(Build.ArtifactStagingDirectory)'
@@ -58,3 +57,13 @@ jobs:
             Write-Host object_data is $(json_data)
 
             Write-Host '$(Build.ArtifactStagingDirectory)'
+  - job:
+    displayName: Finalize Notification
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+      - template: python-template.yml
+        parameters:
+          execute_path: CUSTOM
+          feedback_files: $(json_data)
+          developer_token: ${{ parameters.developer_token }}
