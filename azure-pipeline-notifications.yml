@@ -27,40 +27,10 @@ jobs:
     pool:
       vmImage: $(vmImageName)
     steps:
-      - task: PowerShell@2
-        inputs:
-          targetType: inline
-          script: |
-            python -m venv venv
-            pip3 install -r requirements.txt
-        displayName: Install Dependencies
-      - task: PowerShell@2
-        inputs:
-          targetType: 'inline'
-          script: |
-            # Write your PowerShell commands here.
-            Write-Host ${{ parameters.execute_path }}
-            python -m venv venv
-            cd src
-            
-            $env:BOX_CLIENT_ID = "$(non-prod-box-client-id)"
-            $env:BOX_CLIENT_SECRET = "$(non-prod-box-client-secret)"
-            $env:BOX_DEVELOPER_TOKEN = "${{ parameters.developer_token }}"
-            $env:BOX_FOLDER_ID = "$(non-prod-box-folder-id)"
-            $env:AZURE_APPLICATION_INSIGHTS_KEY = "$(non-prod-app-ins-key)"
-            $env:AZURE_APPLICATION_INSIGHTS_ID = "$(non-prod-app-ins-id)"
-            $env:AZURE_APPLICATION_INSIGHTS_BASE_URL = "$(non-prod-app-ins-url)"
-            $env:LOCAL_FILE_PATH = "../data/" 
-            $env:TEMPLATE_FILE_PATH= "../data/templates/"
-            
-            python app.py --execute=${{ parameters.execute_path }}
-        displayName: 'Proccess Analytics'
-  - job:
-    displayName: Notification File
-    dependsOn: prepare_notification
-    pool:
-      vmImage: $(vmImageName)
-    steps:
+      - template: azure-pipeline.yml
+        parameters:
+          execute_path: ${{ parameters.execute_path }}
+          developer_token: ${{ parameters.developer_token }}
       - task: CopyFiles@2
         inputs:
           SourceFolder: 'data/notifications'
