@@ -15,7 +15,8 @@ variables:
     value: 'windows-latest'
   - name: json_data
     value: empty
-
+  - name: test_value
+    value: predefined
 
 jobs:
   - job: prepare_notification
@@ -38,7 +39,7 @@ jobs:
           targetType: 'inline'
           script: |
             # Write your PowerShell commands here.
-            
+            Write-Host test value $(test_value)
             Write-Host '$(Build.ArtifactStagingDirectory)'
             
       - publish: '$(Build.ArtifactStagingDirectory)'
@@ -55,7 +56,7 @@ jobs:
           targetType: 'inline'
           script: |
             # Write your PowerShell commands here.
-
+            Write-Host test value $(test_value)
             Write-Host '$(Build.ArtifactStagingDirectory)'
   - job:
     displayName: Finalize Notification
@@ -63,6 +64,13 @@ jobs:
       vmImage: $(vmImageName)
     dependsOn: send_notification
     steps:
+      - task: PowerShell@2
+        inputs:
+          targetType: 'inline'
+          script: |
+            # Write your PowerShell commands here.
+            Write-Host test value $(test_value)
+            Write-Host '$(Build.ArtifactStagingDirectory)'
       - template: python-template.yml
         parameters:
           execute_path: CUSTOM
