@@ -17,6 +17,8 @@ variables:
     value: empty
   - name: test_value
     value: predefined
+  - name: new_test_value
+    value: nothing interesting
 
 jobs:
   - job: prepare_notification
