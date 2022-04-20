@@ -27,6 +27,7 @@ steps:
           script: |
             # Write your PowerShell commands here.
             Write-Host ${{ parameters.execute_path }}
+            Write-Host ${{ parameters.feedback_files }}
             python -m venv venv
             cd src
             
