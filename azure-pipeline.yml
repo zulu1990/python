@@ -5,13 +5,7 @@ pr:
 - none
 
 # developer_token is temproraly 
-parameters:
-- name: execute_path
-  displayName: chose part to execute
-  values:
-  - 'ANALYTIC'
-  - 'NOTIFICATION'
-  
+parameters:  
 - name: developer_token
   displayName: developer token from box app
   type: string
@@ -29,5 +23,5 @@ jobs:
     steps:
       - template: python-template.yml
         parameters:
-          execute_path: ${{ parameters.execute_path }}
+          execute_path: ANALYTIC
           developer_token: ${{ parameters.developer_token }}
