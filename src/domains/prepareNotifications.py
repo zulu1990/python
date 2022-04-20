@@ -20,7 +20,8 @@ def process_notification(params: Parameters):
         feedback_files = excel_service.prepare_notifications_file(box_files, params)
         json_data = json.dumps([o.toJSON() for o in feedback_files])
 
-        print('##vso[task.setvariable variable=version;]%s' % json_data)
+        print('##vso[task.setvariable variable=object_data;]%s' % feedback_files)
+        print('##vso[task.setvariable variable=json_data;]%s' % json_data)
 
     except BaseException as bs:
         print(bs)
