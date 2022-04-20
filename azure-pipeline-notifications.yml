@@ -14,7 +14,7 @@ variables:
   - name: vmImageName
     value: 'windows-latest'
   - name: json_data
-    value: empty
+    value: 'empty'
   - name: messageToSend
     value: 'default message to send'
 
@@ -42,6 +42,7 @@ jobs:
             Write-Host $messageToSend
             $message = "message from prepare notification job"
             Write-Host "##vso[task.setvariable variable=messageToSend;isOutput=true] $message"
+            Write-Host "##vso[task.setvariable variable=json_data;isOutput=true] $(json_data)"
             Write-Host '$(Build.ArtifactStagingDirectory)'
         name: outputVars 
       - publish: '$(Build.ArtifactStagingDirectory)'
