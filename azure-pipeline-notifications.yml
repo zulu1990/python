@@ -28,7 +28,7 @@ jobs:
         parameters:
           execute_path: NOTIFICATION
           developer_token: ${{ parameters.developer_token }}
-          feedback_files: '[nothing interesting]'
+          feedback_files: ''
       - task: CopyFiles@2
         inputs:
           SourceFolder: 'data/notifications'
@@ -91,5 +91,5 @@ jobs:
       - template: python-template.yml
         parameters:
           execute_path: CUSTOM
-          feedback_files: "$(feedback)"
           developer_token: ${{ parameters.developer_token }}
+          feedback_files: "$(feedback)"
