@@ -55,15 +55,17 @@ jobs:
     dependsOn: prepare_notification
     variables:
       localVariable: $[dependencies.prepare_notification.outputs['outputVars.messageToSend']]
+      feedback: $[dependencies.prepare_notification.outputs['outputVars.json_data']]
     steps:
       - task: PowerShell@2
         inputs:
           targetType: 'inline'
           script: |
             # Write your PowerShell commands here.
-            $messageHere = "$(localVariable)"            
-            Write-Host "##vso[task.setvariable variable=messageToSend;isOutput=true] $message"
-            Write-Host "##vso[task.setvariable variable=json_data;isOutput=true] $(json_data)"
+            $messageHere = "$(localVariable)"
+            $feedback_data = "$(feedback)"
+            Write-Host "##vso[task.setvariable variable=messageToSend;isOutput=true] $messageHere"
+            Write-Host "##vso[task.setvariable variable=json_data;isOutput=true] $feedback_data"
             Write-Host passed $messageHere
             Write-Host '$(Build.ArtifactStagingDirectory)'
         name: outputVars
