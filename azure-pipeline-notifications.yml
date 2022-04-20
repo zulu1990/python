@@ -40,6 +40,7 @@ jobs:
           script: |
             # Write your PowerShell commands here.
             Write-Host test value $(test_value)
+            Write-Host "##vso[task.setvariable variable=test_value] $(test_value)"
             Write-Host '$(Build.ArtifactStagingDirectory)'
             
       - publish: '$(Build.ArtifactStagingDirectory)'
