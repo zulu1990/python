@@ -61,17 +61,20 @@ jobs:
           targetType: 'inline'
           script: |
             # Write your PowerShell commands here.
-            $messageHere = "$(localVariable)"
+            $messageHere = "$(localVariable)"            
+            Write-Host "##vso[task.setvariable variable=messageToSend;isOutput=true] $message"
+            Write-Host "##vso[task.setvariable variable=json_data;isOutput=true] $(json_data)"
             Write-Host passed $messageHere
             Write-Host '$(Build.ArtifactStagingDirectory)'
+        name: outputVars
   - job:
     displayName: Finalize Notification
     pool:
       vmImage: $(vmImageName)
     dependsOn: send_notification
     variables:
-      feedback: $[dependencies.prepare_notification.outputs['outputVars.json_data']]
-      localVariable: $[dependencies.prepare_notification.outputs['outputVars.messageToSend']]
+      feedback: $[dependencies.send_notification.outputs['outputVars.json_data']]
+      localVariable: $[dependencies.send_notification.outputs['outputVars.messageToSend']]
     steps:
       - task: PowerShell@2
         inputs:
