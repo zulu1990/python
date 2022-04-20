@@ -15,10 +15,6 @@ variables:
     value: 'windows-latest'
   - name: json_data
     value: empty
-  - name: test_value
-    value: predefined
-  - name: new_test_value
-    value: nothing interesting
 
 jobs:
   - job: prepare_notification
@@ -41,9 +37,8 @@ jobs:
           targetType: 'inline'
           script: |
             # Write your PowerShell commands here.
-            Write-Host new test value $(new_test_value)
-            Write-Host test value $(test_value)
-            Write-Host "##vso[task.setvariable variable=new_test_value;isOutput=true;] $(test_value)"
+            $message = "message from prepare notification job"
+            Write-Host "##vso[task.setvariable variable=new_test_value;isOutput=true;] $message"
             Write-Host '$(Build.ArtifactStagingDirectory)'
             
       - publish: '$(Build.ArtifactStagingDirectory)'
