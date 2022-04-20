@@ -41,6 +41,7 @@ jobs:
           targetType: 'inline'
           script: |
             # Write your PowerShell commands here.
+            Write-Host new test value $(new_test_value)
             Write-Host test value $(test_value)
             Write-Host "##vso[task.setvariable variable=new_test_value] $(test_value)"
             Write-Host '$(Build.ArtifactStagingDirectory)'
