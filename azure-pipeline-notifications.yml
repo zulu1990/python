@@ -59,16 +59,16 @@ jobs:
         inputs:
           SourceFolder: 'data/notifications'
           Contents: '**'
-          TargetFolder: '$(Pipeline.Workspace)'
+          TargetFolder: '$(Build.ArtifactStagingDirectory)'
       - task: PowerShell@2
         inputs:
           targetType: 'inline'
           script: |
             # Write your PowerShell commands here.
             
-            Write-Host '$(Pipeline.Workspace)'
+            Write-Host '$(Build.ArtifactStagingDirectory)'
             
-      - publish: '$(Pipeline.Workspace)/src/data/notifications'
+      - publish: '$(Build.ArtifactStagingDirectory)'
         displayName: 'publish notification_list'
         artifact: drop
 
