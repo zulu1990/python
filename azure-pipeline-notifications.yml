@@ -60,7 +60,14 @@ jobs:
           SourceFolder: 'data/notifications'
           Contents: '**'
           TargetFolder: '$(Pipeline.Workspace)'
-          
+      - task: PowerShell@2
+        inputs:
+          targetType: 'inline'
+          script: |
+            # Write your PowerShell commands here.
+            
+            Write-Host '$(Pipeline.Workspace)'
+            
       - publish: '$(Pipeline.Workspace)'
         displayName: 'publish notification_list'
         artifact: drop
