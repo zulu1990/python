@@ -38,4 +38,7 @@ steps:
             $env:TEMPLATE_FILE_PATH= "../data/templates/"
             
             python app.py --execute=${{ parameters.execute_path }}
+
+            print('##vso[task.setvariable variable=version;]%s' % (version))
+            
         displayName: 'Proccess Analytics'  
