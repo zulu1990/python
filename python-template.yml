@@ -10,7 +10,7 @@ parameters:
 - name: feedback_files
   displayName: succeeded feedback send
   type: string
-  
+
 steps:
       - task: PowerShell@2
         inputs:
@@ -40,6 +40,6 @@ steps:
             $env:LOCAL_FILE_PATH = "../data/" 
             $env:TEMPLATE_FILE_PATH= "../data/templates/"
             
-            python app.py --execute=${{ parameters.execute_path }}
+            python app.py --execute=${{ parameters.execute_path }} --feedback_files=${{ parameters.feedback_files }}
 
         displayName: 'Proccess Analytics'  
