@@ -37,9 +37,9 @@ jobs:
           targetType: 'inline'
           script: |
             # Write your PowerShell commands here.
-            Write-Host object_data is $(object_data)
-            Write-Host object_data is - - - - 
             Write-Host object_data is $(json_data)
+            Write-Host object_data is - - - - 
+            Write-Host object_data is $(object_data)
 
             Write-Host '$(Build.ArtifactStagingDirectory)'
             
