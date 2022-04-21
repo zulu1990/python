@@ -89,7 +89,7 @@ jobs:
           script: |
             # Write your PowerShell commands here.
             $messageHere = "$(localVariable)"
-            $feedback = @'
+            $feedback_files = @'
             $(feedback)
             '@
             
@@ -97,4 +97,4 @@ jobs:
         parameters:
           execute_path: CUSTOM
           developer_token: ${{ parameters.developer_token }}
-          feedback_files: "$(feedback)"
+          feedback_files: "$feedback_files"
