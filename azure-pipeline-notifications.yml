@@ -15,8 +15,6 @@ variables:
     value: 'windows-latest'
   - name: json_data
     value: 'empty'
-  - name: messageToSend
-    value: 'default message to send'
 
 jobs:
   - job: prepare_notification
@@ -34,19 +32,6 @@ jobs:
           SourceFolder: 'data/notifications'
           Contents: '**.xlsx'
           TargetFolder: '$(Build.ArtifactStagingDirectory)'
-      - task: PowerShell@2
-        inputs:
-          targetType: 'inline'
-          script: |
-            # Write your PowerShell commands here.
-            $message = "message from prepare notification job"
-            $data = @'
-            $(json_data)
-            '@
-            Write-Host "##vso[task.setvariable variable=messageToSend;isOutput=true] $message"
-            Write-Host "##vso[task.setvariable variable=json_data;isOutput=true] $data"
-            Write-Host '$(Build.ArtifactStagingDirectory)'
-        name: outputVars 
       - publish: '$(Build.ArtifactStagingDirectory)'
         displayName: 'publish notification_list'
         artifact: drop  
