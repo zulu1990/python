@@ -44,6 +44,6 @@ steps:
             $env:LOCAL_FILE_PATH = "../data/" 
             $env:TEMPLATE_FILE_PATH= "../data/templates/"
             
-            python app.py --execute=${{ parameters.execute_path }} --feedback_files="$feedback"
+            python app.py --execute=${{ parameters.execute_path }} --feedback_files='$feedback'
 
         displayName: 'Proccess Analytics'  
