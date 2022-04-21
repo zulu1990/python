@@ -32,6 +32,8 @@ steps:
             '@
 
             $data = "'$($feedback)'"
+            $files = $data.replace('"', '/"')
+            
             Write-Host in template $feedback
             python -m venv venv
             cd src
@@ -46,6 +48,6 @@ steps:
             $env:LOCAL_FILE_PATH = "../data/" 
             $env:TEMPLATE_FILE_PATH= "../data/templates/"
             
-            python app.py --execute=${{ parameters.execute_path }} --feedback_files=$data
+            python app.py --execute=${{ parameters.execute_path }} --feedback_files=$files
 
         displayName: 'Proccess Analytics'  
