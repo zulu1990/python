@@ -23,6 +23,7 @@ def parse_parameters():
     params = Parameters()
     args = parser.parse_args()
 
+    print(f"in args, {args.feedback_files}")
     params.set_parameters(args)
 
     return params
