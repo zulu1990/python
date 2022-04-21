@@ -90,9 +90,10 @@ jobs:
           script: |
             # Write your PowerShell commands here.
             $messageHere = "$(localVariable)"
-            $(feedback_files) = @'
+            $data = @'
             $(feedback)
             '@
+            $(feedback_files) = $data
             
       - template: python-template.yml
         parameters:
