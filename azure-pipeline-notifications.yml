@@ -92,11 +92,7 @@ jobs:
             $feedback = @'
             $(feedback)
             '@
-            Write-Host asdasd $(feedback)
-            Write-Host with quotes  "$(feedback)"
-            Write-Host feedback pased $feedback
-            Write-Host passed $messageHere
-            Write-Host '$(Build.ArtifactStagingDirectory)'
+            
       - template: python-template.yml
         parameters:
           execute_path: CUSTOM
