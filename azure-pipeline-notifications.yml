@@ -65,8 +65,10 @@ jobs:
           targetType: 'inline'
           script: |
             # Write your PowerShell commands here.
-            $messageHere = @"$(localVariable)"
-            $feedback_data = @"$(feedback)"
+            $messageHere = $(localVariable)
+            $feedback_data = @'
+            $(feedback)
+            '@
             Write-Host "##vso[task.setvariable variable=messageToSend;isOutput=true] $messageHere"
             Write-Host "##vso[task.setvariable variable=json_data;isOutput=true] $feedback_data"
             Write-Host passed $messageHere
@@ -86,8 +88,10 @@ jobs:
           targetType: 'inline'
           script: |
             # Write your PowerShell commands here.
-            $messageHere = @"$(localVariable)"
-            $feedback = @"$(feedback)"
+            $messageHere = $(localVariable)
+            $feedback = @'
+            $(feedback)
+            '@
             Write-Host asdasd $(feedback)
             Write-Host with quotes  "$(feedback)"
             Write-Host feedback pased $feedback
