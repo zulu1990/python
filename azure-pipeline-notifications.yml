@@ -92,6 +92,8 @@ jobs:
             $(feedback)
             '@
             Write-Host "##vso[task.setvariable variable=IsFooBar]$param"
+            Write-Host $param
+            
       - template: python-template.yml
         parameters:
           execute_path: CUSTOM

@@ -25,11 +25,12 @@ steps:
         inputs:
           targetType: 'inline'
           script: |
-            # Write your PowerShell commands here.            
+            # Write your PowerShell commands here.    
+
             $feedback = @'
             ${{ parameters.feedback_files }}
             '@
-            
+            Write-Host $feedback
             python -m venv venv
             cd src
             
