@@ -40,7 +40,7 @@ jobs:
           script: |
             # Write your PowerShell commands here.
             $message = "message from prepare notification job"
-            $data = @$(json_data)
+            $data = @'$(json_data)'
             Write-Host "##vso[task.setvariable variable=messageToSend;isOutput=true] $message"
             Write-Host "##vso[task.setvariable variable=json_data;isOutput=true] $data"
             Write-Host '$(Build.ArtifactStagingDirectory)'
