@@ -32,8 +32,8 @@ def process_finish(params: Parameters):
     box_service = BoxService()
     excel_service = ExcelService()
     print('asdasd', params.feedback_files)
-    # feedback_files = json.loads(params.feedback_files)
-    feedback_files = params.feedback_files
+    feedback_files = json.loads(params.feedback_files)
+    
     feedback_delivered = feedback_files 
     
     print('asdasd', feedback_delivered)
