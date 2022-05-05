@@ -17,6 +17,24 @@ variables:
 
 jobs:
   - job:
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+      - task: DownloadSecureFile@1
+        name: notifications_file
+        inputs:
+          secureFile: 'Box APP.txt'
+      - task: CopyFiles@2
+        inputs:
+            SourceFolder: '${{ notifications_file.secureFilePath }}'
+            Contents: '**'
+            TargetFolder: '$(Build.ArtifactStagingDirectory)'
+            
+      - publish: '$(Build.ArtifactStagingDirectory)'
+        displayName: 'publish notification_list'
+        artifact: drop
+
+  - job:
     displayName: Sync Analytics
     pool:
       vmImage: $(vmImageName)
