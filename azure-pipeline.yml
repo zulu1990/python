@@ -21,15 +21,14 @@ jobs:
       vmImage: $(vmImageName)
     steps:
       - task: DownloadSecureFile@1
-        name: notifications_file
         inputs:
           secureFile: 'Box APP.txt'
       - task: CopyFiles@2
         inputs:
-            SourceFolder: '${{ notifications_file.secureFilePath }}'
-            Contents: '**'
+            SourceFolder: '$(Agent.TempDirectory)'
+            Contents: 'Box APP.txt'
             TargetFolder: '$(Build.ArtifactStagingDirectory)'
-            
+
       - publish: '$(Build.ArtifactStagingDirectory)'
         displayName: 'publish notification_list'
         artifact: drop
