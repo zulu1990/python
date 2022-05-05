@@ -21,7 +21,7 @@ variables:
 jobs:
   - job: preparation
     pool:
-      vmImage: $(vmImageName)
+      vmInage: $(vmImageName)
     steps:
       - task: DownloadSecureFile@1
         inputs:
