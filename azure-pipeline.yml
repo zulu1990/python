@@ -9,6 +9,9 @@ parameters:
 - name: developer_token
   displayName: developer token from box app
   type: string
+- name: send
+  type: number
+
 
 variables:
   - group: 'training-center'
@@ -16,7 +19,7 @@ variables:
     value: 'windows-latest'
 
 jobs:
-  - job:
+  - job: preparation
     pool:
       vmImage: $(vmImageName)
     steps:
@@ -34,10 +37,13 @@ jobs:
         artifact: drop
 
   - job:
+    dependsOn: preparation
+
     displayName: Sync Analytics
     pool:
       vmImage: $(vmImageName)
     steps:
+
       - template: python-template.yml
         parameters:
           execute_path: ANALYTIC
