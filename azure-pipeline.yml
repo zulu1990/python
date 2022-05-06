@@ -43,7 +43,18 @@ jobs:
     pool:
       vmImage: $(vmImageName)
     steps:
-
+      - task: PowerShell@2
+        inputs:
+          targetType: 'inline'
+          script: |
+            # Write your PowerShell commands here.
+            $file_data = "123123, 1332, 51233"
+            Write-Host $file_data
+            $file = @'
+            file_data
+            '@
+            Write-Host "Hello World"
+        displayName: 
       - template: python-template.yml
         parameters:
           execute_path: ANALYTIC
