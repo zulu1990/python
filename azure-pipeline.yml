@@ -30,8 +30,6 @@ jobs:
             # Write your PowerShell commands here.
             $file_data = "123123, 1332, 51233"
             Write-Host $file_data
-            $file = $file_data | Convert-String
-            Write-Host $file
             $file2 = @'
             "$file_data"
             '@
