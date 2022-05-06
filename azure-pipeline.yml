@@ -31,7 +31,7 @@ jobs:
             $file_data = "123123, 1332, 51233"
             Write-Host $file_data
             $file = @'
-            file_data
+            $file_data
             '@
             Write-Host $file
         displayName: 
