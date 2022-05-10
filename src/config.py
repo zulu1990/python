@@ -1,5 +1,15 @@
 
+import logging
 import os
+import sys
+
+Log_Format = "%(levelname)s %(asctime)s - %(message)s"
+
+logging.basicConfig(filename = "logfile.log",
+                    stream = sys.stdout, 
+                    filemode = "w",
+                    format = Log_Format, 
+                    level = logging.ERROR)
 
 
 class BoxAuthConfig:
@@ -10,7 +20,7 @@ class BoxAuthConfig:
     JWT_KEY_ID = os.getenv('BOX_JWT_KEY_ID')
     CERT_KEY_PATH = os.getenv('BOX_CERT_KEY_PATH')
     CERT_KEY_PASSPHRASE = os.environ.get('BOX_CERT_KEY_PASSPHRASE')
-    DEVELOPER_TOKEN = os.getenv("BOX_DEVELOPER_TOKEN", "rfAOF6T3LXcr6yOZ7HAcJjXe8W1ZeI6V")
+    DEVELOPER_TOKEN = os.getenv("BOX_DEVELOPER_TOKEN", "axtMBoXuzh70NGYEX4ZAbop3GzW8XG3N")
     FOLDER_ID = os.getenv("BOX_FOLDER_ID", "159813753976")
     #dont commit this
 class AppInsightsConfig:

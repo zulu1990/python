@@ -6,7 +6,7 @@ from models.Parameters import Parameters
 def parse_parameters():
     parser = ArgumentParser()
 
-    parser.add_argument('--execute', help='determines which part of application to run', type=str, default='NOTIFICATION')
+    parser.add_argument('--execute', help='determines which part of application to run', type=str, default='ANALYTIC')
     parser.add_argument('--feedback_files', help='sent feedback list', type=str, default='')
     parser.add_argument('--notification_template', help='notification template file name', type=str, default='notification_template.xlsx')
     parser.add_argument('--report_template', help='report template file name', type=str, default='report_template.xlsx')

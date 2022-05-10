@@ -1,3 +1,4 @@
+import logging
 import os
 
 from domains.analyticsSync import process_analytics_sync
@@ -5,10 +6,14 @@ from domains.prepareNotifications import process_notification, process_finish
 from models.Parameters import Execute
 from services.parametersService import parse_parameters
 
+logger = logging.getLogger(__name__)
+
 if __name__ == '__main__':
     params = parse_parameters()
 
     if params.Execute == Execute.ANALYTIC:
+        logger.info(f"log information {params.Execute}")
+        logger.error(f"log error {params.Formula}")
         process_analytics_sync(params)
     elif params.Execute == Execute.NOTIFICATION:
         process_notification(params)
