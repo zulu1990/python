@@ -11,9 +11,10 @@ logger = logging.getLogger(__name__)
 if __name__ == '__main__':
     params = parse_parameters()
 
+    logger.info(f"log information {params.Execute}")
+    logger.error(f"log error {params.Formula}")
+
     if params.Execute == Execute.ANALYTIC:
-        logger.info(f"log information {params.Execute}")
-        logger.error(f"log error {params.Formula}")
         process_analytics_sync(params)
     elif params.Execute == Execute.NOTIFICATION:
         process_notification(params)
