@@ -3,13 +3,10 @@ import logging
 import os
 import sys
 
-Log_Format = "%(levelname)s %(asctime)s - %(message)s"
+Log_Format = "%(levelname)s - %(message)s"
 
-logging.basicConfig(filename = "logfile.log",
-                    stream = sys.stdout, 
-                    filemode = "w",
-                    format = Log_Format, 
-                    level = logging.ERROR)
+logging.basicConfig(format = Log_Format, 
+                    level = logging.DEBUG)
 
 
 class BoxAuthConfig:
