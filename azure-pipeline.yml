@@ -8,14 +8,6 @@ pr:
 - master
 
 # developer_token is temproraly 
-parameters:  
-- name: developer_token
-  displayName: developer token from box app
-  type: string
-  default: ''
-- name: send
-  type: number
-
 
 variables:
   - group: 'training-center'
