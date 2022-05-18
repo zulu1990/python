@@ -1,8 +1,9 @@
 trigger:
-- none
-
+  branches:
+    include:
+    - master
 pr:
-- none
+- main
 
 # developer_token is temproraly 
 parameters:  
