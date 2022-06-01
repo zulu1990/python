@@ -13,7 +13,7 @@ if __name__ == '__main__':
 
     logger.info(f"log information {params.Execute}")
     logger.error(f"log error {params.Formula}")
-
+    logger.info(f"work_sheet {params.WorkSheet}")
     if params.Execute == Execute.ANALYTIC:
         process_analytics_sync(params)
     elif params.Execute == Execute.NOTIFICATION:
