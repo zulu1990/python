@@ -16,6 +16,14 @@ variables:
   - name: json_data
     value: 'empty'
 
+resources:
+  repositories:
+    - repository: QnARepository
+      type: github
+      endpoint: zulu1990
+      name: zulu1990/QnA-Repo
+      ref: refs/heads/main
+
 jobs:
   - job: prepare_notification
     displayName: Prepare Notification
@@ -45,44 +53,51 @@ jobs:
     variables:
       localVariable: $[dependencies.prepare_notification.outputs['outputVars.messageToSend']]
       feedback: $[dependencies.prepare_notification.outputs['outputVars.json_data']]
+      checkoutPath: 's/qna-repo'
     steps:
-      - task: PowerShell@2
-        inputs:
-          targetType: 'inline'
-          script: |
-            # Write your PowerShell commands here.
-            $messageHere = "$(localVariable)"
-            $feedback_data = @'
-            $(feedback)
-            '@
-            Write-Host "##vso[task.setvariable variable=messageToSend;isOutput=true] $messageHere"
-            Write-Host "##vso[task.setvariable variable=json_data;isOutput=true] $feedback_data"
-            Write-Host passed $messageHere
-            Write-Host '$(Build.ArtifactStagingDirectory)'
-        name: outputVars
-  - job:
-    displayName: Finalize Notification
-    pool:
-      vmImage: $(vmImageName)
-    dependsOn: send_notification
-    variables:
-      feedback: $[dependencies.send_notification.outputs['outputVars.json_data']]
-      localVariable: $[dependencies.send_notification.outputs['outputVars.messageToSend']]
-    steps:            
-      - task: PowerShell@2
-        inputs:
-          targetType: 'inline'
-          script: |
-            # Write your PowerShell commands here.
-            $param = @'
-            $(feedback)
-            '@
-            Write-Host "##vso[task.setvariable variable=IsFooBar]$param"
-            Write-Host $param
-            
-      - template: python-template.yml
-        parameters:
-          execute_path: CUSTOM
-          developer_token: ${{ parameters.developer_token }}
-          feedback_files: $(IsFooBar)
-          work_sheet: 
+    - checkout: QnARepository
+      displayName: Checkout QnA Repository
+      path: $(checkoutPath)
+      persistCredentials: true  
+      clean: true
+    - bash: |
+        git config --global user.email archil.zivzivadze@gmail.com & git config --global user.name "Pipeline"
+        git checkout -b main
+      workingDirectory: $(checkoutPath)
+
+    - task: PowerShell@2
+      inputs:
+        targetType: 'inline'
+        script: |
+          $FolderName = $(checkoutPath) + 'kb-at/Test'
+          $FileName = $FolderName + '/TestFile.txt'
+          if (Test-Path $FolderName) {
+   
+              Write-Host "Folder Exists"
+              # Perform Delete file from folder operation
+          }
+          else
+          {
+  
+              #PowerShell Create directory if not exists
+              New-Item $FolderName -ItemType Directory
+              Write-Host "Folder Created successfully"
+          }
+
+          if (!(Test-Path $FileName))
+          {
+            New-Item -path $FolderName -name TestFile.txt -type "file" -value "my new text"
+            Write-Host "Created new file and text content added"
+          }
+          else
+          {
+            Add-Content -path $FileName -value "new text content"
+            Write-Host "File already exists and new text content added"
+          }
+
+    - script: |
+        git add .
+        git commit -m "deployment $(Build.BuildNumber)"
+        git push --set-upstream origin main 
+      displayName: Add data.txt file
+      workingDirectory: $(checkoutPath)
