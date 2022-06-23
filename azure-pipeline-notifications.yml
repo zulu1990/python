@@ -24,8 +24,7 @@ jobs:
   - job: send_notification
     displayName: Send Notification
     pool:
-      vmImage: $(vmImageName)          
-    dependsOn: prepare_notification
+      vmImage: $(vmImageName)
     variables:
       checkoutPath: 's/qna-repo'
     steps:
