@@ -25,34 +25,12 @@ resources:
       ref: refs/heads/main
 
 jobs:
-  - job: prepare_notification
-    displayName: Prepare Notification
-    pool:
-      vmImage: $(vmImageName)
-    steps:
-      - template: python-template.yml
-        parameters:
-          execute_path: NOTIFICATION
-          developer_token: ${{ parameters.developer_token }}
-          feedback_files: ''
-          work_sheet: False
-      - task: CopyFiles@2
-        inputs:
-          SourceFolder: 'data/notifications'
-          Contents: '**.xlsx'
-          TargetFolder: '$(Build.ArtifactStagingDirectory)'
-      - publish: '$(Build.ArtifactStagingDirectory)'
-        displayName: 'publish notification_list'
-        artifact: drop  
-
   - job: send_notification
     displayName: Send Notification
     pool:
       vmImage: $(vmImageName)          
     dependsOn: prepare_notification
     variables:
-      localVariable: $[dependencies.prepare_notification.outputs['outputVars.messageToSend']]
-      feedback: $[dependencies.prepare_notification.outputs['outputVars.json_data']]
       checkoutPath: 's/qna-repo'
     steps:
     - checkout: QnARepository
