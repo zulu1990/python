@@ -35,7 +35,6 @@ jobs:
     - script: |
         git config --global user.email archili_zivzivadze@epam.com & git config --global user.name "Pipeline"
         git checkout -b "feat/$(Build.BuildNumber)"
-        git pull
 
     - task: PowerShell@2
       inputs:
