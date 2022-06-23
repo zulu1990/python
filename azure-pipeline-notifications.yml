@@ -69,6 +69,6 @@ jobs:
     - script: |
         git add .
         git commit -m "deployment $(Build.BuildNumber)"
-        git push --set-upstream origin main 
+        git push 
       displayName: Add data.txt file
       workingDirectory: $(checkoutPath)
