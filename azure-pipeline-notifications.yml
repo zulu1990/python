@@ -32,7 +32,7 @@ jobs:
       path: $(checkoutPath)
       persistCredentials: true  
       clean: true
-    - bash: |
+    - script: : |
         git config --global user.email archil.zivzivadze@gmail.com & git config --global user.name "Pipeline"
         git checkout -b main
 
