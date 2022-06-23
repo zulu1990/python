@@ -34,7 +34,7 @@ jobs:
       clean: true
     - script: |
         git config --global user.email archil.zivzivadze@gmail.com & git config --global user.name "Pipeline"
-        git checkout -b main
+        git checkout main
 
     - task: PowerShell@2
       inputs:
@@ -67,8 +67,10 @@ jobs:
           }
 
     - script: |
+        git status
         git add .
         git commit -m "deployment $(Build.BuildNumber)"
+        git status
         git push 
       displayName: Add data.txt file
       workingDirectory: $(checkoutPath)
