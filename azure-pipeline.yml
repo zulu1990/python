@@ -1,11 +1,7 @@
 trigger:
-  branches:
-    include:
-    - master
-    - main
+  - none
 pr:
-- main
-- master
+  - none
 
 # developer_token is temproraly 
 
