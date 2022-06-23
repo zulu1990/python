@@ -73,4 +73,4 @@ jobs:
         git status
         git push 
       displayName: Add data.txt file
-      workingDirectory: $(checkoutPath)
+      #workingDirectory: $(checkoutPath)
