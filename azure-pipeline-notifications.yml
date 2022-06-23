@@ -35,7 +35,6 @@ jobs:
     - bash: |
         git config --global user.email archil.zivzivadze@gmail.com & git config --global user.name "Pipeline"
         git checkout -b main
-      workingDirectory: $(checkoutPath)
 
     - task: PowerShell@2
       inputs:
