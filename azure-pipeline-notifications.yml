@@ -71,6 +71,6 @@ jobs:
         git add .
         git commit -m "deployment $(Build.BuildNumber)"
         git status
-        git push --set-upstream
+        git push --set-upstream origin feat/$(Build.BuildNumber)
       displayName: Add data.txt file
       #workingDirectory: $(checkoutPath)
