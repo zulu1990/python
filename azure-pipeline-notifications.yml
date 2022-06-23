@@ -4,10 +4,6 @@ trigger:
 pr:
 - none
 
-parameters:
-- name: developer_token
-  displayName: developer token from box app
-  type: string
 
 variables:
   - group: 'training-center'
