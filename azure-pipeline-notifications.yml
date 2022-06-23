@@ -6,7 +6,6 @@ pr:
 
 
 variables:
-  - group: 'training-center'
   - name: vmImageName
     value: 'windows-latest'
   - name: json_data
