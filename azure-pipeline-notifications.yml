@@ -40,7 +40,7 @@ jobs:
       inputs:
         targetType: 'inline'
         script: |
-          $FolderName = $(checkoutPath) + 'kb-at/Test'
+          $FolderName = Join-Path -Path $(checkoutPath) -ChildPath "kb-at/Test"
           $FileName = $FolderName + '/TestFile.txt'
           if (Test-Path $FolderName) {
    
