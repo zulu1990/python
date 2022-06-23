@@ -67,6 +67,7 @@ jobs:
           }
 
     - script: |
+        git config --global user.email archili_zivzivadze@epam.com & git config --global user.name "Pipeline"
         git status
         git add .
         git commit -m "deployment $(Build.BuildNumber)"
