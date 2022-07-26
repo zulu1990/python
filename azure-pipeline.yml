@@ -19,7 +19,7 @@ jobs:
         inputs:
           targetType: 'inline'
           script: |
-            $foo = Get-Content 'botium.json' | Out-String | ConvertFrom-Json
+            $foo = Get-Content './botium.json' | Out-String | ConvertFrom-Json
             
             Write-Host $foo
     
