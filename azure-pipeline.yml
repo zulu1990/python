@@ -5,6 +5,11 @@ pr:
 
 # developer_token is temproraly 
 
+
+variables:
+  - name: vmImageName
+    value: 'windows-latest'
+
 jobs:
   - job: 
     pool:
