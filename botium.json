@@ -1,0 +1,18 @@
+{
+  "botium": {
+    "Capabilities": {
+      "PROJECTNAME": "Sophia Qna Maker Atomation tests",
+      "CONTAINERMODE": "simplerest",
+      "SIMPLEREST_RESPONSE_JSONPATH": "$.answers[0].answer",
+      "SCRIPTING_ENABLE_MEMORY": true,
+      "SIMPLEREST_METHOD": "POST",
+      "SIMPLEREST_HEADERS_TEMPLATE": {
+        "Authorization": "EndpointKey ##endpointKey##",
+        "Content-Type": "application/json"
+      },
+      "SIMPLEREST_URL": "https://n6-sophiaqnamaker-01.azurewebsites.net/qnamaker/knowledgebases/edd267f6-71c2-43a1-9ade-b00e4f13718b/generateAnswer",
+      "SIMPLEREST_REQUEST_HOOK": "my-request-hook.js"
+    }
+}
+}
+       
