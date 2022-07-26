@@ -5,20 +5,6 @@ pr:
 
 # developer_token is temproraly 
 
-parameters:
-  - name: execute_path
-    displayName: chose path to execute
-    default: SYNC_ANALYTIC
-    type: string
-    values:
-      - SYNC_ANALYTIC
-      - UPDATE_QNA_MAKER
-
-variables:
-  - group: 'training-center'
-  - name: vmImageName
-    value: 'ubuntu-latest'
-
 jobs:
   - job: 
     pool:
