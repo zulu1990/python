@@ -11,9 +11,7 @@ variables:
     value: 'windows-latest'
 
 jobs:
-  - job: 
-    pool:
-      vmImage: $(vmImageName)
+  - job: start
     steps:
       - task: PowerShell@2
         inputs:
@@ -22,7 +20,12 @@ jobs:
             (Get-Content -Path .\botium.json) |
               ForEach-Object {$_ -Replace '##endpointKey##', 'Caution'} |
                 Set-Content -Path .\botium.json
+  
+  - job: sec
+    dependsOn: start
+    steps:
       - task: PowerShell@2
+       
         inputs:
           targetType: 'inline'
           script: |
