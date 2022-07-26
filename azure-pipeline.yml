@@ -21,6 +21,7 @@ jobs:
           script: |
             $foo = Get-Content '.\botium.json' | Out-String | ConvertFrom-Json
             $myJson = Get-Content .\botium.json -Raw | ConvertFrom-Json
-            Write-Host $foo
-            Write-Host $myJson
+
+            Write-Host $foo.botium
+            Write-Host $myJson.botium
     
