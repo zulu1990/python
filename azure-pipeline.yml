@@ -24,6 +24,13 @@ jobs:
     pool:
       vmImage: $(vmImageName)
     steps:
+      - task: PowerShell@2
+        inputs:
+          targetType: 'inline'
+          script: |
+            $foo = [FooObject](Get-Content 'C:\path\to\your.json' | Out-String | ConvertFrom-Json)
+            
+            Write-Host $foo
       - task: UsePythonVersion@0
         displayName: 'Use Python 3.x'
       - task: Bash@3
