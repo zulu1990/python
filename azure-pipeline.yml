@@ -21,8 +21,8 @@ jobs:
           script: |
             $foo = Get-Content '.\botium.json' | Out-String | ConvertFrom-Json
             $myJson = Get-Content .\botium.json -Raw | ConvertFrom-Json
-            
-            $foo.botium.Capabilities.SIMPLEREST_HEADERS_TEMPLATE.Authorization.replace('##endpointKey##','hi')
+
+            $foo.botium.Capabilities.SIMPLEREST_HEADERS_TEMPLATE.Authorization=$foo.botium.Capabilities.SIMPLEREST_HEADERS_TEMPLATE.Authorization.replace('##endpointKey##','hi')
             Write-Host $foo.botium.Capabilities.SIMPLEREST_HEADERS_TEMPLATE.Authorization
-            Write-Host $myJson.botium
+            
     
