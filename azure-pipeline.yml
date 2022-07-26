@@ -22,6 +22,6 @@ jobs:
             $foo = Get-Content '.\botium.json' | Out-String | ConvertFrom-Json
             $myJson = Get-Content .\botium.json -Raw | ConvertFrom-Json
 
-            Write-Host $foo.botium
+            Write-Host $foo.botium.Capabilities.SIMPLEREST_HEADERS_TEMPLATE.Authorization
             Write-Host $myJson.botium
     
